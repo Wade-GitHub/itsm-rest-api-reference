@@ -596,10 +596,10 @@ class Root(flask_restful.Resource, ApiResource):
         tags:
         - Root
         summary: GET Root resource
-        description: Auto generated using Swagger Inspector
+        description: Return the root resource, which includes links to all collections.
         responses:
           '200':
-            description: Auto generated using Swagger Inspector
+            description: Successful GET request. Returns resources.
             content:
               application/json:
                 schema:
