@@ -1,0 +1,223 @@
+openapi: 3.0.1
+info:
+  title: Aportio ITSM REST API reference
+  description: Reference documentation for Aportio's ITSM REST API.
+  version: '0.1'
+tags:
+- name: Root
+  description: The root level of the API
+- name: Users
+  description: Requests against user resources
+- name: Tickets
+  description: Requests against ticket resources
+paths:
+  /:
+    get:
+      tags:
+      - Root
+      summary: GET Root resource
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                    properties:
+                      tickets:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      comments:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      customer_user_associations:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      self:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      customers:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      users:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+              examples:
+                '0':
+                  value: "{\n    \"_links\": {\n        \"self\": {\n            \"\
+                    href\": \"/\"\n        },\n        \"users\": {\n            \"\
+                    href\": \"/users\"\n        },\n        \"customers\": {\n   \
+                    \         \"href\": \"/customers\"\n        },\n        \"tickets\"\
+                    : {\n            \"href\": \"/tickets\"\n        },\n        \"\
+                    comments\": {\n            \"href\": \"/comments\"\n        },\n\
+                    \        \"customer_user_associations\": {\n            \"href\"\
+                    : \"/customer_user_associations\"\n        }\n    }\n}\n"
+  /users:
+    get:
+      tags:
+      - Users
+      summary: GET Users resource
+      description: Return the user table data.
+      responses:
+        '200':
+          description: Successful GET request. Returns user table data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _embedded:
+                    type: object
+                    properties:
+                      users:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            _links:
+                              type: object
+                              properties:
+                                self:
+                                  type: object
+                                  properties:
+                                    href:
+                                      type: string
+                            _created:
+                              type: string
+                            id:
+                              type: integer
+                            email:
+                              type: array
+                              items:
+                                type: string
+                  _links:
+                    type: object
+                    properties:
+                      contained_in:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      self:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                  total_queried:
+                    type: integer
+              examples:
+                '0':
+                  value: "{\n    \"total_queried\": 4,\n    \"_embedded\": {\n   \
+                    \     \"users\": [\n            {\n                \"id\": 1,\n\
+                    \                \"email\": [\n                    \"some@user.com\"\
+                    \n                ],\n                \"_created\": \"\",\n  \
+                    \              \"_links\": {\n                    \"self\": {\n\
+                    \                        \"href\": \"/users/1\"\n            \
+                    \        }\n                }\n            },\n            {\n\
+                    \                \"id\": 2,\n                \"email\": [\n  \
+                    \                  \"another@user.com\",\n                   \
+                    \ \"with-multiple@emails.com\"\n                ],\n         \
+                    \       \"_created\": \"\",\n                \"_links\": {\n \
+                    \                   \"self\": {\n                        \"href\"\
+                    : \"/users/2\"\n                    }\n                }\n   \
+                    \         },\n            {\n                \"id\": 3,\n    \
+                    \            \"email\": [\n                    \"foo@foobar.com\"\
+                    \n                ],\n                \"_created\": \"\",\n  \
+                    \              \"_links\": {\n                    \"self\": {\n\
+                    \                        \"href\": \"/users/3\"\n            \
+                    \        }\n                }\n            },\n            {\n\
+                    \                \"id\": 4,\n                \"email\": [\n  \
+                    \                  \"someone@somewhere.com\"\n               \
+                    \ ],\n                \"_created\": \"\",\n                \"\
+                    _links\": {\n                    \"self\": {\n               \
+                    \         \"href\": \"/users/4\"\n                    }\n    \
+                    \            }\n            }\n        ]\n    },\n    \"_links\"\
+                    : {\n        \"self\": {\n            \"href\": \"/users\"\n \
+                    \       },\n        \"contained_in\": {\n            \"href\"\
+                    : \"/\"\n        }\n    }\n}\n"
+    post:
+      tags:
+      - Users
+      summary: POST a new User
+      description: Create a new User.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              '0':
+                value: "{\n    \"email\": [\n        \"somethingsomething@something.com\"\
+                  \n    ]\n}"
+      responses:
+        '201':
+          description: Successful POST request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                    properties:
+                      contained_in:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      tickets:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      self:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                      customers:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                  _created:
+                    type: string
+                  _updated:
+                    type: string
+                  id:
+                    type: integer
+                  email:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                '0':
+                  value: "{\n  \"_created\": \"2020-05-24T17:42:02.942583\", \n  \"\
+                    _links\": {\n    \"contained_in\": {\n      \"href\": \"/users\"\
+                    \n    }, \n    \"customers\": {\n      \"href\": \"/users/5/customers/\"\
+                    \n    }, \n    \"self\": {\n      \"href\": \"/users/5\"\n   \
+                    \ }, \n    \"tickets\": {\n      \"href\": \"/users/5/tickets\"\
+                    \n    }\n  }, \n  \"_updated\": \"2020-05-24T17:42:02.942583\"\
+                    , \n  \"email\": [\n    \"somethingsomething@something.com\"\n\
+                    \  ], \n  \"id\": 5\n}\n"
